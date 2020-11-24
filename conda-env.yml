@@ -132,5 +132,5 @@ dependencies:
   - zlib=1.2.11=h516909a_1006
   - pip:
     - geojson==2.5.0
-prefix: /home/smas036/anaconda3/envs/transit
+prefix: /Users/lois/conda/anaconda3/envs
 
