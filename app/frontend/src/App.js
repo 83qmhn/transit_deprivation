@@ -675,7 +675,7 @@ class App extends Component{
     _getLocationDT(location) {
 
         let region = "akl";
-        let url = `http://130.216.217.4:8081/transit?region=${region}&location=${location}`;
+        let url = `http://0.0.0.0:8081/transit?region=${region}&location=${location}`;
         fetch(url)
             .then(response => response.json())
             .then((data) => {

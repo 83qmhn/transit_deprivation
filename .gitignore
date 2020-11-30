@@ -5,7 +5,7 @@ cosc366/*
 deck.gl/dump
 deck.gl/node_modules
 app/frontend/node_modules
-app/frontend/dist
+#app/frontend/dist
 app/frontend/data
 app.dash/data
 app/backend/data
@@ -21,6 +21,7 @@ mnt.sh
 
 # python
 .idea/
+.vscode/
 .ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
 app/data

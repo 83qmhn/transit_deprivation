@@ -15,7 +15,7 @@ http.createServer(function (req, res) {
             //console.log(req.headers.host);
             res.writeHead(200, {
                 'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "http://130.216.217.4:8080",
+                "Access-Control-Allow-Origin": "http://0.0.0.0:8080",
                 "Access-Control-Allow-Methods": "GET",
                 "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept"
             });
