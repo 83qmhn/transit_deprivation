@@ -12,7 +12,7 @@ http.createServer(function (req, res) {
                 res.writeHead(404, {'Content-Type': 'text/html'});
                 return res.end();
             }
-            //console.log(req.headers.host);
+            console.log("serving" + req.headers.host);
             res.writeHead(200, {
                 'Content-Type': 'application/json',
                 "Access-Control-Allow-Origin": "http://0.0.0.0:8080",
