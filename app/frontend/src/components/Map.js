@@ -41,65 +41,6 @@ const INITIAL_VIEW_STATE = {
 
 class Map extends Component {
 
-    /**
-    constructor(props) {
-        super(props);
-        this.state = {
-            layers: [],
-        };
-    }
-     **/
-
-    /**
-    componentDidMount() {
-        const { dataZones, opacity, eta, etaView, colorScheme, selectedDataZone } = this.props;
-        this.setState({
-            layers: [
-                new GeoJsonLayer({
-                    id: 'eta',
-                    data: dataZones,
-                    opacity: opacity,
-                    getLineWidth: f => this._matchesSelectedDataZone(f.id),
-                    stroked: true,
-                    filled: true,
-                    lineWidthUnits: "pixels",
-                    getFillColor: f => this._getColor(f.id),
-                    getLineColor: [255, 255, 255],
-                    onClick: (event, info) => {
-                        info.handled = true;
-                        this._handleGeoJsonLayerOnClick(event);
-                    },
-                    pickable: true,
-                    onHover: this._handleMapOnHover,
-                    updateTriggers: {
-                        getFillColor: [eta, etaView, colorScheme],
-                        getLineWidth: selectedDataZone,
-                    },
-                })
-            ]
-        });
-    }
-
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        const { clinics, destinationOverlay } = this.props;
-        if (prevProps.destinationOverlay !== destinationOverlay) {
-            // add dataset specific layers
-
-            if (destinationOverlay === "Diabetes Clinics") {
-                this.layers.push(
-                    new GeoJsonLayer({
-                        id: 'clinics',
-                        data: clinics,
-                        pointRadiusMinPixels: 5,
-                        getFillColor: [235, 52, 52, 255],
-                    })
-                )
-            }
-
-        }
-    }
-    **/
-
     _getColor = (location) => {
         const { colorScheme, eta, etaView, } = this.props;
         const mapColorSchemeInterpolator = mapColorSchemeNameToInterpolator(colorScheme);
@@ -211,6 +152,18 @@ class Map extends Component {
             })
         ];
 
+        if (destinationOverlay === "Diabetes Clinics"){
+            layers.push(
+                new GeoJsonLayer({
+                    id: 'clinics',
+                    data: clinics,
+                    pointRadiusMinPixels: 5,
+                    getFillColor: [235, 52, 52, 255],
+                })
+            )
+        }
+
+
         return(
             <div className={classes.map}>
                 <DeckGL
@@ -227,7 +180,6 @@ class Map extends Component {
                         mapboxApiAccessToken={MAPBOX_TOKEN}
                     />
                     {
-                        //valid ? (
                         (eta !== null) ? (
                             <MapLegend
                                 minValue={minValue}
@@ -238,7 +190,6 @@ class Map extends Component {
                             />) : null
                     }
                     <MapTooltip />
-                    {/*props.renderMapTooltip()*/}
                 </DeckGL>
             </div>
         )
