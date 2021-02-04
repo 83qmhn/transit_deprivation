@@ -18,6 +18,11 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 timeLimit: action.timeLimit
             };
+        case types.SET_TIME_AT_DESTINATION:
+            return {
+                ...state,
+                timeAtDestination: action.time
+            };
         case types.SET_MAP_OPACITY:
             return {
                 ...state,
@@ -67,4 +72,3 @@ export default function reducer(state = initialState, action) {
             return { ...state }
     }    
 }
-

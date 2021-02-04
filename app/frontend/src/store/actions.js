@@ -24,6 +24,13 @@ export function setTimeLimit(timeLimit) {
     }
 }
 
+export function setTimeAtDestination(time) {
+    return {
+        type: types.SET_TIME_AT_DESTINATION,
+        time
+    }
+}
+
 export function setMapOpacity(mapOpacity) {
     return {
         type: types.SET_MAP_OPACITY,
@@ -90,7 +97,8 @@ export function resetETA() {
 export function computeETA() {
     return (dispatch, getState) => {
         const data = getState().locationDT;
-        const timeLimit = getState().timeLimit;
+        const timeAtDestination = getState().timeAtDestination;
+        const timeLimit = getState().timeLimit - timeAtDestination;
         const idxLoc = getState().idxLoc;
         if (data === null) {
             return;
@@ -166,10 +174,13 @@ export function setLocationDT(locationDT) {
     }
 }
 
-export function getLocationDT(location) {
+export function getLocationDT(location, direction="outbound") {
+    /**
+     * direction: "inbound" means from everywhere to this location, "outbound" means from this location to everywhere
+     */
     return (dispatch, getState) => {
         let region = "akl";
-        let url = DT_SERVER+`/transit?region=${region}&location=${location}`;
+        let url = DT_SERVER+`/transit?region=${region}&location=${location}&direction=${direction}`;
         fetch(url)
             .then(response => response.json())
             .then((data) => {
