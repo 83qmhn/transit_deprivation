@@ -34,7 +34,7 @@ class TimeLimitSlider extends Component {
                 </Typography>
                 <Slider
                     className={classes.timeLimitSlider}
-                    defaultValue={60}
+                    defaultValue={120}
                     onChange={this.handleTimeLimitChange}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="auto"
